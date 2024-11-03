@@ -1,0 +1,16 @@
+* {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 0px;
+}
+
+header {
+    background-color: #006BFF;
+    padding: 12px;
+    height: 42px;
+}
+#name h1 {
+    position: absolute;
+    top: 15px;
+    left: 100px;
+    color: white;
+}
