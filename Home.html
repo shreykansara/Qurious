@@ -4,8 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qurious</title>
-    <link rel="stylesheet" href="qurious.css">
     <link rel="icon" href="logo.png">
+    <style>
+        * {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            margin: 0px;
+        }
+        header {
+            background-color: #006BFF;
+            padding: 12px;
+            color: white;
+            height: 42px;
+            position: absolute;
+            top: 0px;
+            width: 100%;
+        }
+        #name h1 {
+            position: absolute;
+            top: 14px;
+            left: 85px;
+        }
+        #logo img {
+            width: 40px;
+            position: absolute;
+            left: 40px;
+            top: 13px;
+        }
+
+        header #button {
+            border: 2px white solid;
+            border-radius: 3px;
+            text-align: center;
+            padding: 5px;
+            position: absolute;
+            top: 15px;
+            right: 40px;
+            width: 100px;
+        }
+        header #button:hover {
+            background-color: #0056cf;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -16,7 +59,7 @@
             <img src="logo.png">
         </div>
         <div id="button">
-            <h3>Start now</h3>
+            <a href="Quiz.html"><h3>Start now</h3></a>
         </div>
     </header>
 </body>
