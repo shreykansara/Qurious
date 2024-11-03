@@ -6,11 +6,30 @@
 header {
     background-color: #006BFF;
     padding: 12px;
+    color: white;
     height: 42px;
 }
 #name h1 {
     position: absolute;
+    top: 14px;
+    left: 85px;
+}
+#logo img {
+    width: 40px;
+    position: absolute;
+    left: 40px;
+    top: 13px;
+}
+header #button {
+    border: 2px white solid;
+    border-radius: 3px;
+    text-align: center;
+    padding: 5px;
+    position: absolute;
     top: 15px;
-    left: 100px;
-    color: white;
+    right: 40px;
+    width: 100px;
+}
+header #button:hover {
+    background-color: #0056cf;
 }
