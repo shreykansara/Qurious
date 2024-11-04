@@ -10,27 +10,30 @@
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             margin: 0px;
         }
+        body {
+            background-image: url(bg.png);
+            background-size: contain;
+        }
         header {
             background-color: #006BFF;
             padding: 12px;
             color: white;
             height: 42px;
-            position: absolute;
-            top: 0px;
             width: 100%;
         }
+
         #name h1 {
             position: absolute;
             top: 14px;
             left: 85px;
         }
+
         #logo img {
             width: 40px;
             position: absolute;
             left: 40px;
             top: 13px;
         }
-
         header #button {
             border: 2px white solid;
             border-radius: 3px;
@@ -40,13 +43,66 @@
             top: 15px;
             right: 40px;
             width: 100px;
+            box-shadow: 2px 2px rgba(0, 0, 0, 0.345);
         }
         header #button:hover {
             background-color: #0056cf;
         }
+        hr {
+            color: white;
+        }
         a {
             text-decoration: none;
             color: white;
+        }
+        .box {
+            padding: 80px;
+            color: white;
+            background-color: #006BFF;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            display: flex;
+            align-content: space-evenly;
+            align-items: center;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.271);
+        }
+        .box img {
+            background-color: white;
+            width: 600px;
+            height: 380px;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.362);
+        }
+        .box .text {
+            margin-left: 50px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+        .box .text h1{
+            padding: 10px;
+            text-shadow: 1px 2px rgba(0, 0, 0, 0.314);
+        }
+        .box .text p {
+            padding: 10px;
+            text-shadow: 1px 1px rgba(0, 0, 0, 0.314);
+        }
+        .link {
+            text-align: center;
+            margin-top: 60px;
+        }
+        .link h2 a {
+            background-color: #006BFF;
+            margin: 50px;
+            text-align: center;
+            padding: 20px;
+            padding-left: 40px;
+            padding-right: 40px;
+            border-radius: 3px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.33);
+        }
+        .link h2 a:hover {
+            background-color: #0056cf;
         }
     </style>
 </head>
@@ -56,11 +112,24 @@
             <h1>QURIOUS</h1>
         </div>
         <div id="logo">
-            <img src="logo.png">
+            <img src="logo-nobg.png">
         </div>
         <div id="button">
             <a href="Quiz.html"><h3>Start now</h3></a>
         </div>
     </header>
+    <hr>
+    <div class="box">
+        <img src="quiz.png">
+        <div class="text">
+            <h1>Make Your Own Quiz!</h1>
+            <p>
+                Make a quiz by picking an interesting theme and creating a mix of question types like multiple choice or true/false. Add a range of difficulties to keep it engaging and test it out for any issues. Then, share it with friends and enjoy the fun of seeing who scores the highest!
+            </p>
+        </div>
+    </div>
+    <div class="link">
+        <h2><a href="Quiz.html">Try Now!</a></h2>
+    </div>
 </body>
 </html>
