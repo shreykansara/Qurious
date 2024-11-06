@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Qurious</title>
+    <script src="Quiz.js"></script>
+    <style>
+        body {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            margin: 0px;
+            background-image: url(bg.png);
+            background-size: 300px;
+        }
+        header {
+            background-color: #006BFF;
+            padding: 12px;
+            color: white;
+            height: 42px;
+            width: 100%;
+        }
+
+        #name h1 {
+            position: absolute;
+            top: -6px;
+            left: 85px;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+        }
+        #logo img {
+            width: 40px;
+            position: absolute;
+            left: 40px;
+            top: 13px;
+        }
+        header #button {
+            border: 2px white solid;
+            border-radius: 3px;
+            text-align: center;
+            padding: 5px;
+            position: absolute;
+            top: 15px;
+            right: 40px;
+            width: 100px;
+            box-shadow: 2px 2px rgba(0, 0, 0, 0.345);
+        }
+        header #button:hover {
+            background-color: #0056cf;
+        }
+        .container {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px black;
+            margin: 25%;
+            margin-top: 5%;
+            margin-bottom: 5%;
+            padding: 10px;
+        }
+        .new {
+            font-size: 20px;
+        }
+        select {
+            width: 100%;
+            height: 30px;
+        }
+        #questn {
+            width: 99%;
+            height: 20px;
+        }
+        .new h1 {
+            text-align: center;   
+        }
+        .t-f {
+            display: block;
+        }
+        .mcq {
+            display: none;
+        }
+        input[type="text"] {
+            height: 30px;
+        }
+        input[type="text"]:hover {
+            background-color: lightgray;
+        }
+        input[type="submit"] {
+            background-color: #28a745;
+            border-radius: 5px;
+            color: white;
+            width: 100%;
+            height: 35px;
+            font-size: medium;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+        .mcq input[type="text"] {
+            width: 94%;
+            margin-bottom: 5px;
+        }
+        hr {
+            color: lightgray;
+            
+        }
+        .preview {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="name">
+            <a href="Home.html"><h1>QURIOUS</h1></a>
+        </div>
+        <div id="logo">
+            <img src="logo-nobg.png">
+        </div>
+    </header>
+    <div class="container">
+        <div class="new">
+            <h1>Add New Question</h1>
+            <form action="#">
+                <label for="qstntype">Select Question Type:</label>
+                <br>
+                <select name="qstntype" id="qstntype" onchange="toggleOpt()">
+                    <option value="tf">True or False</option>
+                    <option value="mcq">Multiple Choice (Single or Multi Correct)</option>
+                </select>
+                <br><br>
+                <label for="questn">Question:</label>
+                <br>
+                <input type="text" name="questn" id="questn" required>
+                <br><br>
+                <div class="t-f" id="tfblock">
+                    <input type="radio" name="ans" id="t">
+                    <label for="t">True</label>
+                    <br>
+                    <input type="radio" name="ans" id="f">
+                    <label for="f">False</label>
+                    <br><br>
+                    <input type="submit" value="Add Question">
+                </div>
+                <div class="mcq" id="mcqblock">
+                    <input type="text" placeholder="Option 1">
+                    <input type="checkbox">
+                    <br>
+                    <input type="text" placeholder="Option 2">
+                    <input type="checkbox">
+                    <br>
+                    <input type="text" placeholder="Option 3">
+                    <input type="checkbox">
+                    <br>
+                    <input type="text" placeholder="Option 4">
+                    <input type="checkbox">
+                    <br><br>
+                    <input type="submit" value="Add Question">
+                </div>
+            </form>
+        </div>
+        <hr>    
+        <div class="preview">
+            <h1>Preview</h1>
+            <form action="#">
+
+            </form>
+        </div>
+    </div>
+</body>
+</html>
