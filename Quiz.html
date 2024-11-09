@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz - Qurious</title>
-    <script src="Quiz.js"></script>
+    <link rel="icon" href="logo.png">
     <style>
         body {
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -22,7 +22,7 @@
 
         #name h1 {
             position: absolute;
-            top: -6px;
+            top: -7px;
             left: 85px;
         }
         a {
@@ -67,7 +67,8 @@
         }
         #questn {
             width: 99%;
-            height: 20px;
+            height: 30px;
+            font-size: medium;
         }
         .new h1 {
             text-align: center;   
@@ -78,8 +79,9 @@
         .mcq {
             display: none;
         }
-        input[type="text"] {
-            height: 30px;
+        input[type="radio"] {
+            position: relative;
+            bottom:2px;
         }
         input[type="text"]:hover {
             background-color: lightgray;
@@ -98,13 +100,18 @@
         .mcq input[type="text"] {
             width: 94%;
             margin-bottom: 5px;
+            height: 30px;
+            font-size: medium;
         }
         hr {
             color: lightgray;
             
         }
-        .preview {
+        .preview h1 {
             text-align: center;
+        }
+        .question p {
+            margin: 10px;
         }
     </style>
 </head>
@@ -114,13 +121,13 @@
             <a href="Home.html"><h1>QURIOUS</h1></a>
         </div>
         <div id="logo">
-            <img src="logo-nobg.png">
+            <a href="Home.html"><img src="logo-nobg.png"></a>
         </div>
     </header>
     <div class="container">
         <div class="new">
             <h1>Add New Question</h1>
-            <form action="#">
+            <form action="#" id="addQuestionForm">
                 <label for="qstntype">Select Question Type:</label>
                 <br>
                 <select name="qstntype" id="qstntype" onchange="toggleOpt()">
@@ -132,39 +139,42 @@
                 <br>
                 <input type="text" name="questn" id="questn" required>
                 <br><br>
-                <div class="t-f" id="tfblock">
-                    <input type="radio" name="ans" id="t">
+                <div class="tf" id="tfblock">
+                    <input type="radio" name="tfans" id="t">
                     <label for="t">True</label>
                     <br>
-                    <input type="radio" name="ans" id="f">
+                    <input type="radio" name="tfans" id="f">
                     <label for="f">False</label>
                     <br><br>
-                    <input type="submit" value="Add Question">
+                    <input type="submit" value="Add Question" onclick="addQues()">
                 </div>
                 <div class="mcq" id="mcqblock">
-                    <input type="text" placeholder="Option 1">
-                    <input type="checkbox">
+                    <input type="text" placeholder="Option 1" class="option" required>
+                    <input type="checkbox" class="correctAnswer">
                     <br>
-                    <input type="text" placeholder="Option 2">
-                    <input type="checkbox">
+                    <input type="text" placeholder="Option 2"  class="option" required>
+                    <input type="checkbox" class="correctAnswer">
                     <br>
-                    <input type="text" placeholder="Option 3">
-                    <input type="checkbox">
+                    <input type="text" placeholder="Option 3" class="option">
+                    <input type="checkbox" class="correctAnswer">
                     <br>
-                    <input type="text" placeholder="Option 4">
-                    <input type="checkbox">
+                    <input type="text" placeholder="Option 4" class="option">
+                    <input type="checkbox" class="correctAnswer">
                     <br><br>
-                    <input type="submit" value="Add Question">
+                    <input type="submit" value="Add Question" onclick="addQues()">
                 </div>
             </form>
         </div>
         <hr>    
         <div class="preview">
-            <h1>Preview</h1>
-            <form action="#">
-
-            </form>
+            <h1>Quiz</h1>
+            <form action="#" id="quiz"></form>
+            <br>
+            <input type="submit" onclick="submitQuiz()" value="Submit">
+            <br>
+            <div id="result"></div>
         </div>
     </div>
+    <script src="Quiz.js"></script>
 </body>
 </html>
