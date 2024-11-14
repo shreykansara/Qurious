@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Qurious</title>
+    <style>
+        body {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            margin: 0px;
+            background-image: url(bg.png);
+            background-size: 300px;
+        }
+        header {
+            background-color: #006BFF;
+            padding: 12px;
+            color: white;
+            height: 42px;
+            width: 100%;
+        }
+
+        #name h1 {
+            position: absolute;
+            top: -7px;
+            left: 85px;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+        }
+        #logo img {
+            width: 40px;
+            position: absolute;
+            left: 40px;
+            top: 13px;
+        }
+        header #button {
+            border: 2px white solid;
+            border-radius: 3px;
+            text-align: center;
+            padding: 5px;
+            position: absolute;
+            top: 15px;
+            right: 40px;
+            width: 100px;
+            box-shadow: 2px 2px rgba(0, 0, 0, 0.345);
+        }
+        header #button:hover {
+            background-color: #0056cf;
+        }
+        .container {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px black;
+            margin: 25%;
+            margin-top: 5%;
+            margin-bottom: 5%;
+            padding: 10px;
+        }
+        #addQuestionSection {
+            font-size: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        #addQuestionSection form {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+        }
+        #questionText {
+            height: 25px;
+            margin-bottom: 18px;
+        }
+        select {
+            margin-bottom: 18px;
+            height: 25px;
+        }
+        input[type='submit'] {
+            background-color: #28a745;
+            height: 30px;
+            color: white;
+            width: 100%;
+            border-radius: 5px;
+        }
+        #trueFalseOptions {
+            display: block;
+        }
+        #multipleChoiceOptions {
+            display: none;
+            flex-direction: column;
+        }
+        .options {
+            display: flex;
+            flex-direction: row;
+        }
+        .opt {
+            width: auto;
+            display: flex;
+            flex-direction: column;
+            width: 90%;
+            float: left;
+        }
+        .opt input {
+            margin:3px;
+            height: 25px;
+        }
+        .check {
+            width: 40px;
+            position: relative;
+            bottom: 4px;
+        }
+        .check input {
+            margin:12px
+        }
+        .question { margin-bottom: 20px; }
+        .result { margin-top: 20px; font-weight: bold; }
+        .correct { color: green; }
+        .incorrect { color: red; }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="name">
+            <a href="Home.html"><h1>QURIOUS</h1></a>
+        </div>
+        <div id="logo">
+            <a href="Home.html"><img src="logo-nobg.png"></a>
+        </div>
+    </header>
+    <div class="container">
+        <div id="addQuestionSection">
+            <h1>Add a New Question</h1>
+            <form id="addQuestionForm">
+                <label for="questionText">Question:</label>
+                <input type="text" id="questionText" required>
+
+                <label for="questionType">Question Type:</label>
+                <select id="questionType" onchange="toggleAnswerFields()" value="tf" required>
+                    <option value="truefalse" selected>True/False</option>
+                    <option value="single">Multiple Choice (Single or Multi Correct)</option>
+                </select><br><br>
+            </form>
+    
+                <div id="answerOptions">
+                    <div id="trueFalseOptions">
+                        <label>Correct Answer:</label><br>
+                        <input type="radio" name="tfAnswer" value="True" required> True<br>
+                        <input type="radio" name="tfAnswer" value="False"> False<br><br>
+                    </div>
+    
+                    <div id="multipleChoiceOptions">
+                        <label>Enter Options (Mark Correct Answers):</label>
+                        <div class="options">
+                            <div class="opt">
+                                <input type="text" placeholder="Option 1" class="option" required>
+                                <input type="text" placeholder="Option 2" class="option" required>
+                                <input type="text" placeholder="Option 3" class="option" required>
+                                <input type="text" placeholder="Option 4" class="option" required>
+                            </div>
+                            <div class="check">
+                                <input type="checkbox" class="correctAnswer"><br>
+                                <input type="checkbox" class="correctAnswer"><br>
+                                <input type="checkbox" class="correctAnswer"><br>
+                                <input type="checkbox" class="correctAnswer">
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+    
+                <input type="submit" onclick="addQuestion()" value="Add Question">
+        </div>
+    
+        <h1>Your Quiz</h1>
+        <form id="quizForm">
+            <!-- Questions will be added here dynamically -->
+        </form>
+    
+        <input type="submit" onclick="submitQuiz()" value="Submit">
+    
+        <div id="result" class="result"></div>
+    </div>
+    
+
+    <script>
+        let questions = []; // Array to store questions
+
+        // Show/hide answer fields based on selected question type
+        function toggleAnswerFields() {
+            const questionType = document.getElementById("questionType").value;
+            document.getElementById("trueFalseOptions").style.display = questionType === "truefalse" ? "block" : "none";
+            document.getElementById("multipleChoiceOptions").style.display = questionType !== "truefalse" ? "flex" : "none";
+        }
+
+        // Add a new question to the quiz
+        function addQuestion() {
+            const questionText = document.getElementById("questionText").value;
+            const questionType = document.getElementById("questionType").value;
+
+            let newQuestion = { text: questionText, type: questionType };
+
+            if (questionType === "truefalse") {
+                const answer = document.querySelector('input[name="tfAnswer"]:checked').value;
+                newQuestion.correctAnswer = answer;
+
+            } 
+            else {
+                const options = Array.from(document.querySelectorAll('.option')).map(opt => opt.value);
+                const correctAnswers = options.filter((opt, index) => document.querySelectorAll('.correctAnswer')[index].checked);
+                
+                newQuestion.options = options;
+                newQuestion.correctAnswers = correctAnswers;
+            }
+
+            questions.push(newQuestion);
+            displayQuestions();
+            document.getElementById("addQuestionForm").reset();
+            toggleAnswerFields(); // Reset answer fields display
+        }
+
+        // Display questions in the quiz form
+        function displayQuestions() {
+            const quizForm = document.getElementById("quizForm");
+            quizForm.innerHTML = ''; // Clear existing questions
+
+            questions.forEach((question, index) => {
+                let questionHTML = `<div class="question"><p>${index + 1}. ${question.text}</p>`;
+                
+                if (question.type === "truefalse") {
+                    questionHTML += `
+                        <input type="radio" name="q${index}" value="True"> True<br>
+                        <input type="radio" name="q${index}" value="False"> False<br>
+                    `;
+                } else {
+                    question.options.forEach(option => {
+                        const inputType = question.type === "single" ? "radio" : "checkbox";
+                        questionHTML += `<input type="${inputType}" name="q${index}" value="${option}"> ${option}<br>`;
+                    });
+                }
+
+                questionHTML += '</div>';
+                quizForm.innerHTML += questionHTML;
+            });
+        }
+
+        // Check answers and display results
+        function submitQuiz() {
+            let score = 0;
+            let feedback = '<br><br>';
+
+            questions.forEach((question, index) => {
+                const userAnswers = Array.from(document.querySelectorAll(`input[name="q${index}"]:checked`)).map(input => input.value);
+                
+                if (question.type === "truefalse") {
+                    if (userAnswers[0] === question.correctAnswer) {
+                        feedback += `<p class="correct">${index + 1}. Correct!</p>`;
+                        score++;
+                    } else {
+                        feedback += `<p class="incorrect">${index + 1}. Incorrect. Correct answer: ${question.correctAnswer}</p>`;
+                    }
+                } else {
+                    const isCorrect = question.correctAnswers.length === userAnswers.length &&
+                                      question.correctAnswers.every(answer => userAnswers.includes(answer));
+
+                    if (isCorrect) {
+                        feedback += `<p class="correct">${index + 1}. Correct!</p>`;
+                        score++;
+                    } else {
+                        feedback += `<p class="incorrect">${index + 1}. Incorrect. Correct answers: ${question.correctAnswers.join(', ')}</p>`;
+                    }
+                }
+            });
+
+            document.getElementById("result").innerHTML = `You scored ${score} out of ${questions.length}.<br>` + feedback;
+        }
+    </script>
+
+</body>
+</html>
