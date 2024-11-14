@@ -1,2 +1,0 @@
-# Qurious
-Interactive Quiz Platform
